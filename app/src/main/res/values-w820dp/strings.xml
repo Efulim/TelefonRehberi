@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="AD">Ad</string>
+    <string name="SOYAD">Soyad</string>
+    <string name="TELEFON">Telefon</string>
+    <string name="INSERT">Kaydet</string>
+</resources>
