@@ -56,8 +56,9 @@ public class TelRehberi extends SQLiteOpenHelper {
         return numRows;
     }
 
-    public ArrayList<String> getAllCotacts() {
-        ArrayList<String> array_list = new ArrayList<String>();
+    public ArrayList<DBLine_rehber> getAllContacts() {
+        ArrayList<DBLine_rehber> array_list = new ArrayList<DBLine_rehber>();
+        DBLine_rehber line_rehber;
 
         //hp = new HashMap();
         SQLiteDatabase db = this.getReadableDatabase();
@@ -65,7 +66,13 @@ public class TelRehberi extends SQLiteOpenHelper {
         res.moveToFirst();
 
         while(res.isAfterLast() == false){
-            array_list.add(res.getString(res.getColumnIndex(AD)));
+            line_rehber = new DBLine_rehber();
+
+            line_rehber.setAd(res.getString(res.getColumnIndex(AD)));
+            line_rehber.setSoyad(res.getString(res.getColumnIndex(SOYAD)));
+            line_rehber.setTelefon(res.getString(res.getColumnIndex(TELEFON)));
+
+            array_list.add(line_rehber);
             res.moveToNext();
         }
         return array_list;

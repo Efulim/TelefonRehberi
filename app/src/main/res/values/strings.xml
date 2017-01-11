@@ -4,4 +4,6 @@
     <string name="SOYAD">Soyad</string>
     <string name="TELEFON">Telefon</string>
     <string name="INSERT">Kaydet</string>
+    <string name="YENI_KAYIT">Yeni Kayıt</string>
+    <string name="LISTE">Liste</string>
 </resources>

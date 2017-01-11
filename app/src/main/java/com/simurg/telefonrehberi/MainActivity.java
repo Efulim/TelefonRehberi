@@ -2,9 +2,7 @@ package com.simurg.telefonrehberi;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.widget.TextView;
-
-import java.util.ArrayList;
+import android.view.Menu;
 
 public class MainActivity extends FragmentActivity {
     FrgInsert frgInsert;
@@ -26,15 +24,11 @@ public class MainActivity extends FragmentActivity {
                     .add(R.id.holder_of_frg, frgInsert)
                     .commit();
         }
+    }
 
-//        TelRehberi telRehberi = new TelRehberi(getApplicationContext());
-//        telRehberi.insertKayit("AD", "SOYAD", "05315554433");
-//
-//        TextView tv = (TextView) findViewById(R.id.tv1);
-//        tv.setText(String.valueOf(telRehberi.numberOfRows()));
-//
-//
-//        ArrayList<String> allContacts = new ArrayList<String>();
-//        allContacts = telRehberi.getAllCotacts();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
     }
 }
