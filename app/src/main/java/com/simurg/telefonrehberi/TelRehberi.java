@@ -52,8 +52,7 @@ public class TelRehberi extends SQLiteOpenHelper {
 
     public int numberOfRows(){
         SQLiteDatabase db = this.getReadableDatabase();
-        int numRows = (int) DatabaseUtils.queryNumEntries(db, DATABASE_TABLE_NAME);
-        return numRows;
+        return (int) DatabaseUtils.queryNumEntries(db, DATABASE_TABLE_NAME);
     }
 
     public ArrayList<DBLine_rehber> getAllContacts() {
@@ -64,8 +63,7 @@ public class TelRehberi extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res =  db.rawQuery( "select * from " + DATABASE_TABLE_NAME, null );
         res.moveToFirst();
-
-        while(res.isAfterLast() == false){
+        while(!res.isAfterLast()){
             line_rehber = new DBLine_rehber();
 
             line_rehber.setAd(res.getString(res.getColumnIndex(AD)));
@@ -75,6 +73,7 @@ public class TelRehberi extends SQLiteOpenHelper {
             array_list.add(line_rehber);
             res.moveToNext();
         }
+        res.close();
         return array_list;
     }
 }

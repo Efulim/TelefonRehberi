@@ -29,21 +29,21 @@ public class FrgInsert extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         if (savedInstanceState != null) {
             return;
-        } else {
-            telRehberi = new TelRehberi(getContext());
-
-            etAd = (EditText) getActivity().findViewById(R.id.et_frg_insert_ad);
-            etSoyad = (EditText) getActivity().findViewById(R.id.et_frg_insert_soyad);
-            etTelefon = (EditText) getActivity().findViewById(R.id.et_frg_insert_telefon);
-            btnInsert = (Button) getActivity().findViewById(R.id.btn_frg_insert_insert);
-            btnInsert.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    telRehberi.insertKayit(etAd.getText().toString(),
-                            etSoyad.getText().toString(),
-                            etTelefon.getText().toString());
-                }
-            });
         }
+
+        telRehberi = new TelRehberi(getActivity().getApplicationContext());
+
+        etAd = (EditText) getActivity().findViewById(R.id.et_frg_insert_ad);
+        etSoyad = (EditText) getActivity().findViewById(R.id.et_frg_insert_soyad);
+        etTelefon = (EditText) getActivity().findViewById(R.id.et_frg_insert_telefon);
+        btnInsert = (Button) getActivity().findViewById(R.id.btn_frg_insert_insert);
+        btnInsert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                telRehberi.insertKayit(etAd.getText().toString(),
+                        etSoyad.getText().toString(),
+                        etTelefon.getText().toString());
+            }
+        });
     }
 }
