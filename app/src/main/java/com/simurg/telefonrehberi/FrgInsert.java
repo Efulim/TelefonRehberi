@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  * Created by utkuyegen on 10/01/2017.
@@ -40,9 +41,14 @@ public class FrgInsert extends Fragment {
         btnInsert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                telRehberi.insertKayit(etAd.getText().toString(),
+                long result = telRehberi.insertKayit(etAd.getText().toString(),
                         etSoyad.getText().toString(),
                         etTelefon.getText().toString());
+                if (result > 0) {
+                    Toast.makeText(getActivity().getApplicationContext(), "Kayit Basarili!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getActivity().getApplicationContext(), "Kayit Basarisiz!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

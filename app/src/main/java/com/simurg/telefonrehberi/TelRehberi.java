@@ -17,6 +17,7 @@ public class TelRehberi extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "TelRehberi.db";
     private static final String DATABASE_TABLE_NAME = "rehber";
+    private static final String ID = "id";
     private static final String AD = "ad";
     private static final String SOYAD = "soyad";
     private static final String TELEFON = "telefon";
@@ -28,7 +29,7 @@ public class TelRehberi extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("create table " + DATABASE_TABLE_NAME
-                + "(id integer primary key, "
+                + "(" + ID + " integer primary key, "
                 + AD + " text, "
                 + SOYAD + " text, "
                 + TELEFON + " text)");
@@ -40,32 +41,37 @@ public class TelRehberi extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-    public boolean insertKayit(String ad, String soyad, String telefon) {
+    public long insertKayit(String ad, String soyad, String telefon) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(AD, ad);
         cv.put(SOYAD, soyad);
         cv.put(TELEFON, telefon);
-        db.insert(DATABASE_TABLE_NAME, null, cv);
-        return true;
+
+        return db.insert(DATABASE_TABLE_NAME, null, cv);
     }
 
-    public int numberOfRows(){
-        SQLiteDatabase db = this.getReadableDatabase();
-        return (int) DatabaseUtils.queryNumEntries(db, DATABASE_TABLE_NAME);
+//    public int numberOfRows(){
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        return (int) DatabaseUtils.queryNumEntries(db, DATABASE_TABLE_NAME);
+//    }
+
+    public Integer deleteContact (Integer id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(DATABASE_TABLE_NAME, ID + " = ? ", new String[] { Integer.toString(id) });
     }
 
     public ArrayList<DBLine_rehber> getAllContacts() {
         ArrayList<DBLine_rehber> array_list = new ArrayList<DBLine_rehber>();
         DBLine_rehber line_rehber;
 
-        //hp = new HashMap();
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res =  db.rawQuery( "select * from " + DATABASE_TABLE_NAME, null );
         res.moveToFirst();
         while(!res.isAfterLast()){
             line_rehber = new DBLine_rehber();
 
+            line_rehber.setDbId(res.getLong(res.getColumnIndex(ID)));
             line_rehber.setAd(res.getString(res.getColumnIndex(AD)));
             line_rehber.setSoyad(res.getString(res.getColumnIndex(SOYAD)));
             line_rehber.setTelefon(res.getString(res.getColumnIndex(TELEFON)));

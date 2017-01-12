@@ -7,4 +7,5 @@
     <string name="YENI_KAYIT">Yeni Kayıt</string>
     <string name="LISTE">Liste</string>
     <string name="WELCOME">Menüden Seçim Yapınız</string>
+    <string name="DELETE">Sil</string>
 </resources>

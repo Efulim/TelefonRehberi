@@ -36,7 +36,7 @@ public class FrgList extends Fragment {
         if (allContacts != null) {
             if (listView == null)
                 listView = (ListView) getActivity().findViewById(R.id.frgListView);
-            listView.setAdapter(new CustRehberListAdapter(allContacts, getContext()));
+            listView.setAdapter(new CustRehberListAdapter(allContacts, getContext(), telRehberi));
         }
     }
 }

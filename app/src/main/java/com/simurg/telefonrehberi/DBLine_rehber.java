@@ -6,6 +6,7 @@ package com.simurg.telefonrehberi;
 
 public class DBLine_rehber {
     private String ad, soyad, telefon;
+    private long dbId;
 
     public String getAd() {
         return ad;
@@ -29,5 +30,13 @@ public class DBLine_rehber {
 
     public void setTelefon(String telefon) {
         this.telefon = telefon;
+    }
+
+    public long getDbId() {
+        return dbId;
+    }
+
+    public void setDbId(long dbId) {
+        this.dbId = dbId;
     }
 }

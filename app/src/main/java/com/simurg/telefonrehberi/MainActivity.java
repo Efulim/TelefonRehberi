@@ -2,10 +2,11 @@ package com.simurg.telefonrehberi;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends AppCompatActivity {
     FrgWelcome frgWelcome;
     FrgInsert frgInsert;
     FrgList frgList;
@@ -35,19 +36,17 @@ public class MainActivity extends FragmentActivity {
     }
 
     @Override
-    public boolean onMenuItemSelected(int featureId, MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menuYeniKayit:
-                if (frgInsert == null)
-                    frgInsert = new FrgInsert();
+                frgInsert = new FrgInsert();
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.holder_of_frg, frgInsert)
                         .commit();
                 return true;
             case R.id.menuListe:
-                if (frgList == null)
-                    frgList = new FrgList();
+                frgList = new FrgList();
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.holder_of_frg, frgList)
