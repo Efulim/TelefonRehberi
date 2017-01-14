@@ -36,7 +36,15 @@ public class FrgList extends Fragment {
         if (allContacts != null) {
             if (listView == null)
                 listView = (ListView) getActivity().findViewById(R.id.frgListView);
-            listView.setAdapter(new CustRehberListAdapter(allContacts, getContext(), telRehberi));
+            listView.setAdapter(new CustRehberListAdapter(allContacts, getContext(), telRehberi, this));
         }
+    }
+
+    public void setUpdateScreen(Bundle b) {
+        FrgUpdate frgUpdate = new FrgUpdate();
+        frgUpdate.setArguments(b);
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.holder_of_frg, frgUpdate)
+                .commit();
     }
 }

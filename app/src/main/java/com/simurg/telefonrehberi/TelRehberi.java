@@ -51,11 +51,6 @@ public class TelRehberi extends SQLiteOpenHelper {
         return db.insert(DATABASE_TABLE_NAME, null, cv);
     }
 
-//    public int numberOfRows(){
-//        SQLiteDatabase db = this.getReadableDatabase();
-//        return (int) DatabaseUtils.queryNumEntries(db, DATABASE_TABLE_NAME);
-//    }
-
     public Integer deleteContact (Integer id) {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(DATABASE_TABLE_NAME, ID + " = ? ", new String[] { Integer.toString(id) });
@@ -81,5 +76,31 @@ public class TelRehberi extends SQLiteOpenHelper {
         }
         res.close();
         return array_list;
+    }
+
+    public DBLine_rehber selectKayit(long id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        DBLine_rehber line_rehber = new DBLine_rehber();
+        Cursor res = db.rawQuery("select * from " + DATABASE_TABLE_NAME + " where id = ?", new String[] {Long.toString(id)});
+        res.moveToFirst();
+        while (!res.isAfterLast()) {
+            line_rehber.setDbId(res.getLong(res.getColumnIndex(ID)));
+            line_rehber.setAd(res.getString(res.getColumnIndex(AD)));
+            line_rehber.setSoyad(res.getString(res.getColumnIndex(SOYAD)));
+            line_rehber.setTelefon(res.getString(res.getColumnIndex(TELEFON)));
+
+            res.moveToNext();
+        }
+        return line_rehber;
+    }
+
+    public int updateKayit(long id, String ad, String soyad, String telefon) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(ID, id);
+        cv.put(AD, ad);
+        cv.put(SOYAD, soyad);
+        cv.put(TELEFON, telefon);
+        return db.update(DATABASE_TABLE_NAME, cv, "id = ?", new String[] {Long.toString(id)});
     }
 }

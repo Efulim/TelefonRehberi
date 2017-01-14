@@ -3,8 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:title="@string/YENI_KAYIT"
-        android:id="@+id/menuYeniKayit"
-        android:icon="@android:drawable/ic_menu_add" />
+        android:id="@+id/menuYeniKayit" />
     <item android:title="@string/LISTE"
         android:id="@+id/menuListe" />
 </menu>

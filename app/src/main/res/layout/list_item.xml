@@ -35,4 +35,13 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:id="@+id/list_item_BtnDelete" />
+
+    <Button
+        android:text="@string/UPDATE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/list_item_BtnDelete"
+        android:layout_toLeftOf="@+id/list_item_BtnDelete"
+        android:layout_toStartOf="@+id/list_item_BtnDelete"
+        android:id="@+id/list_item_BtnUpdate" />
 </RelativeLayout>

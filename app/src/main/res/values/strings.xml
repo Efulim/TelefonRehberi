@@ -8,4 +8,6 @@
     <string name="LISTE">Liste</string>
     <string name="WELCOME">Menüden Seçim Yapınız</string>
     <string name="DELETE">Sil</string>
+    <string name="UPDATE">Güncelle</string>
+    <string name="MAIN_SCREEN">Ana Ekran</string>
 </resources>

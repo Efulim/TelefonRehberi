@@ -1,6 +1,7 @@
 package com.simurg.telefonrehberi;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,12 +21,14 @@ public class CustRehberListAdapter extends BaseAdapter {
     private static LayoutInflater layoutInflater = null;
     private Context context;
     private TelRehberi telRehberi;
+    private FrgList frgList;
 
-    public CustRehberListAdapter(ArrayList<DBLine_rehber> allContacts, Context context, TelRehberi telRehberi) {
+    public CustRehberListAdapter(ArrayList<DBLine_rehber> allContacts, Context context, TelRehberi telRehberi, FrgList frgList) {
         this.allContacts = allContacts;
         this.context = context;
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.telRehberi = telRehberi;
+        this.frgList = frgList;
     }
 
     @Override
@@ -46,7 +49,7 @@ public class CustRehberListAdapter extends BaseAdapter {
     public class Holder {
         TextView ad, soyad, telefon;
         long dbId;
-        Button btnDelete;
+        Button btnDelete, btnUpdate;
     }
 
     @Override
@@ -59,6 +62,7 @@ public class CustRehberListAdapter extends BaseAdapter {
         h.soyad = (TextView) rowView.findViewById(R.id.list_item_soyad);
         h.telefon = (TextView) rowView.findViewById(R.id.list_item_telefon);
         h.btnDelete = (Button) rowView.findViewById(R.id.list_item_BtnDelete);
+        h.btnUpdate = (Button) rowView.findViewById(R.id.list_item_BtnUpdate);
 
         h.dbId = allContacts.get(i).getDbId();
         h.ad.setText(allContacts.get(i).getAd());
@@ -82,6 +86,14 @@ public class CustRehberListAdapter extends BaseAdapter {
                 } else {
                     Toast.makeText(context, "Kayit Silinemedi!", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+        h.btnUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle b = new Bundle();
+                b.putLong("dbId", h.dbId);
+                frgList.setUpdateScreen(b);
             }
         });
         return rowView;
